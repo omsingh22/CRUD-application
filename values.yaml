@@ -1,0 +1,8 @@
+mongodb:
+  replicaSet:
+    enabled: true
+    name: my-replica-set
+  persistence:
+    enabled: true
+    size: 10Gi
+
