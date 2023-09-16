@@ -1,0 +1,9 @@
+apiVersion: myapp.example.com/v1alpha1
+kind: MyApp
+metadata:
+  name: myapp-sample
+spec:
+  mongodb: true
+  mongodbPVCName: mongodb-pvc
+  app: true
+

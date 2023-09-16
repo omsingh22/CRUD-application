@@ -1,0 +1,26 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: myapps.myapp.example.com
+spec:
+  group: myapp.example.com
+  names:
+    kind: MyApp
+    listKind: MyAppList
+    plural: myapps
+    singular: myapp
+  scope: Namespaced
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+  subresources:
+    status: {}
+  validation:
+    openAPIV3Schema:
+      properties:
+        spec:
+          properties:
+            mongodbStorageSize:   # Add this section
+              type: string
+

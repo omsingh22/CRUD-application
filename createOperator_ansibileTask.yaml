@@ -1,0 +1,13 @@
+---
+- name: Deploy MongoDB
+  k8s:
+    definition: "{{ lookup('template', role_path + '/templates/mongodb-deployment.yml.j2') }}"
+    state: present
+  when: "'mongodb' in spec"
+
+- name: Deploy Application
+  k8s:
+    definition: "{{ lookup('template', role_path + '/templates/app-deployment.yml.j2') }}"
+    state: present
+  when: "'app' in spec"
+

@@ -1,0 +1,35 @@
+# roles/mongodb/templates/mongodb-deployment.yml.j2
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mongodb
+spec:
+  template:
+    spec:
+      containers:
+        - name: mongodb
+          image: mongo
+          ports:
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongodb-data
+              mountPath: /data/db
+      volumes:
+        - name: mongodb-data
+          persistentVolumeClaim:
+            claimName: {{ spec.mongodbPVCName }}
+---
+# roles/app/templates/app-deployment.yml.j2
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp
+spec:
+  template:
+    spec:
+      containers:
+        - name: myapp
+          image: myapp-image
+          ports:
+            - containerPort: 80
+
